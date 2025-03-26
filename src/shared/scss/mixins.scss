@@ -5,6 +5,13 @@
 	align-items: center;
 }
 
+@mixin flex($dir, $h, $v) {
+	display: flex;
+	flex-direction: $dir;
+	justify-content: $h;
+	align-items: $v;
+}
+
 @mixin font($fw, $fs, $fh, $ls) {
 	font-weight: $fw;
 	font-size: $fs;

@@ -1,16 +1,18 @@
 <template>
-    <home-header />
+	<home-header />
+    <home-body />
 </template>
 
 <script>
-import HomeHeader from './ui/home-header/HomeHeader.vue';
+import HomeHeader from "./ui/home-header/HomeHeader.vue";
+import HomeBody from "./ui/home-body/HomeBody.vue";
 
 export default {
-    name: 'HomePage',
+	name: "HomePage",
 
-    components: {
-        HomeHeader
-    }
-}
-
+	components: {
+		HomeHeader,
+        HomeBody
+	},
+};
 </script>
