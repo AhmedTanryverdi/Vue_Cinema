@@ -4,8 +4,9 @@
 			<img :src="poster" alt="image" />
 		</div>
 		<div class="body">
-			
-			<h3 class="title" @click="$router.push({path: `/movie/${$route.query.id}`, query: {id: id}})">{{ title }}</h3>
+			<h3 class="title" @click="goToMovie()">
+				{{ title }}
+			</h3>
 			<div class="genres">
 				<span>{{ year }}, </span>
 				<ul>
@@ -40,7 +41,20 @@
 export default {
 	name: "ProductCard",
 
-	props: ["id", "poster", "title", "year", "genres", "directors", "actors"],
+	props: ["id", "poster", "title", "year", "genres", "directors", "actors", "description"],
+
+	methods: {
+		goToMovie() {
+			this.$store.dispatch("syncSetActiveMovie", this.$props);
+			this.$router.push({
+				name: "MoviePageID",
+				params: {
+					id: this.$props.id,
+				},
+			});
+
+		},
+	},
 };
 </script>
 
@@ -56,7 +70,7 @@ export default {
 
 	&:hover {
 		box-shadow: 0px 4px 4px 0px #00000040;
-        transform: translateY(-8px);
+		transform: translateY(-8px);
 	}
 
 	.img {
@@ -104,7 +118,7 @@ export default {
 				color: #988f8f;
 			}
 			ul {
-                align-self: center;
+				align-self: center;
 				display: flex;
 				flex-wrap: wrap;
 

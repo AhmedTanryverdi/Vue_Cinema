@@ -39,7 +39,7 @@ export default {
 	},
 
 	created() {
-		this.$store.dispatch("asyncSetProducts");
+		this.$store.dispatch("asyncSetProducts", "https://mashroom-movies-api.netlify.app/api/movies");
 	},
 };
 </script>
