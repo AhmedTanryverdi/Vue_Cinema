@@ -1,18 +1,18 @@
 <template>
-	<div class="movie-page">
-		<one-movie
-			:poster="movie?.poster"
-			:title="movie?.title"
-			:year="movie?.year"
-			:genres="movie?.genres"
-			:directors="movie?.directors"
-			:actors="movie?.actors"
-			:description="movie?.description"
-		/>
-	</div>
+	<my-loading v-if="$store.getters.getLoading" />
+	<one-movie v-else
+		:poster="movie?.poster"
+		:title="movie?.title"
+		:year="movie?.year"
+		:genres="movie?.genres"
+		:directors="movie?.directors"
+		:actors="movie?.actors"
+		:description="movie?.description"
+	/>
 </template>
 
 <script>
+import MyLoading from "@/shared/components/loading/MyLoading.vue";
 import OneMovie from "./ui/OneMovie.vue";
 
 export default {
@@ -20,6 +20,7 @@ export default {
 
 	components: {
 		OneMovie,
+		MyLoading,
 	},
 
 	computed: {

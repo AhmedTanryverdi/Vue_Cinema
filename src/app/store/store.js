@@ -12,12 +12,12 @@ const store = createStore({
 	getters: {
 		products: (state) => state.products,
 		activeMovie: (state) => state.activeMovie,
+		getLoading: (state) => state.isLoading,
 	},
 
 	mutations: {
 		SET_PRODUCTS(state, payload) {
 			state.products = payload;
-			console.log(payload);
 		},
 
 		SET_LOADING(state, payload) {
@@ -36,6 +36,7 @@ const store = createStore({
 				.then((res) => res.json())
 				.then(({ data }) => {
 					context.commit("SET_PRODUCTS", data);
+					console.log("finish");
 				})
 				.finally(() => {
 					context.commit("SET_LOADING", false);
