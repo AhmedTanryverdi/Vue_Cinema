@@ -4,7 +4,8 @@
 			<img :src="poster" alt="image" />
 		</div>
 		<div class="body">
-			<h3 class="title">{{ title }}</h3>
+			
+			<h3 class="title" @click="$router.push({path: `/movie/${$route.query.id}`, query: {id: id}})">{{ title }}</h3>
 			<div class="genres">
 				<span>{{ year }}, </span>
 				<ul>
@@ -39,7 +40,7 @@
 export default {
 	name: "ProductCard",
 
-	props: ["poster", "title", "year", "genres", "directors", "actors"],
+	props: ["id", "poster", "title", "year", "genres", "directors", "actors"],
 };
 </script>
 
@@ -77,6 +78,7 @@ export default {
 			@include font(700, 36px, 36px, 0);
 			color: $primary-txt-color;
 			margin-bottom: 12px;
+			cursor: pointer;
 		}
 
 		.genres,

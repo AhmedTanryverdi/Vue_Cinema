@@ -3,16 +3,28 @@
 		<h2 class="title">Фильмы</h2>
 		<div class="selects-sort">
 			<label for="by-name">
-				<input type="radio" name="checkbox" class="input"/>
+				<input type="checkbox" @click="isChecked=!isChecked" value=isChecked name="checkbox" class="input" />
 				<span>Отсортировать по названию</span>
 			</label>
 			<label for="by-year">
-				<input type="radio" name="checkbox" class="input"/>
+				<input type="checkbox" @click="isChecked=!isChecked" value=isChecked name="checkbox" class="input" />
 				<span>Отсортировать по году</span>
 			</label>
 		</div>
 	</header>
 </template>
+
+<script>
+export default {
+	name: "HomeHeader",
+
+	data() {
+		return {
+			isChecked: false,
+		};
+	},
+};
+</script>
 
 <style lang="scss" scoped>
 @import "@/shared/scss/styles.scss";
@@ -44,7 +56,7 @@
 		label .input {
 			width: 15px;
 			height: 15px;
-			accent-color: red;
+			accent-color: $header-bg-color;
 		}
 
 		label span {

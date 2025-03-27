@@ -1,17 +1,16 @@
 <template>
 	<my-header />
-	<home-page />
+	<main>
+		<router-view />
+	</main>
 </template>
 
 <script>
-import MyHeader from "./widget/header/MyHeader.vue";
-
-import HomePage from "./pages/home/HomePage.vue";
+import MyHeader from "../../widget/header/MyHeader.vue";
 
 export default {
 	name: "App",
 	components: {
-		HomePage,
 		MyHeader,
 	},
 };

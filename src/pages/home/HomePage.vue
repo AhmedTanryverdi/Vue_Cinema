@@ -1,6 +1,9 @@
 <template>
-	<home-header />
-    <home-body />
+	<div class="header">
+		<home-header />
+	</div>
+
+	<home-body />
 </template>
 
 <script>
@@ -12,7 +15,7 @@ export default {
 
 	components: {
 		HomeHeader,
-        HomeBody
+		HomeBody,
 	},
 };
 </script>

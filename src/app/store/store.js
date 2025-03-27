@@ -15,7 +15,6 @@ const store = createStore({
 	mutations: {
 		SET_PRODUCTS(state, payload) {
 			state.products = payload;
-			console.log("[movies]: ", payload);
 		},
 
 		SET_LOADING(state, payload) {
