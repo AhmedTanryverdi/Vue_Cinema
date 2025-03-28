@@ -27,6 +27,7 @@ export default {
 		movie() {
 			return this.$store.getters.activeMovie;
 		},
+		
 		isMovieLoaded() {
 			return String(this.movie?.id) === String(this.$route?.params?.id);
 		},

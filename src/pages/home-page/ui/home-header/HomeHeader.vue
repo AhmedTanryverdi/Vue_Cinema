@@ -3,11 +3,22 @@
 		<h2 class="title">Фильмы</h2>
 		<div class="selects-sort">
 			<label for="by-name">
-				<input type="checkbox" @click="isChecked=!isChecked" value=isChecked name="checkbox" class="input" />
+				<input
+					type="checkbox"
+					@click="setChekedSort('name')"
+					v-model="sortByName"
+					class="input"
+				/>
 				<span>Отсортировать по названию</span>
 			</label>
 			<label for="by-year">
-				<input type="checkbox" @click="isChecked=!isChecked" value=isChecked name="checkbox" class="input" />
+				<input
+					type="checkbox"
+					@click="setChekedSort('year')"
+					v-model="sortByYear"
+					name="checkbox"
+					class="input"
+				/>
 				<span>Отсортировать по году</span>
 			</label>
 		</div>
@@ -18,10 +29,20 @@
 export default {
 	name: "HomeHeader",
 
-	data() {
-		return {
-			isChecked: false,
-		};
+	computed: {
+		sortByName() {
+			return this.$store.getters.sortField === "name";
+		},
+		sortByYear() {
+			return this.$store.getters.sortField === "year";
+		},
+	},
+
+	methods: {
+		setChekedSort(mode) {
+			this.$store.dispatch("syncSortMode", mode);
+			this.$store.getters.sortMovies;
+		},
 	},
 };
 </script>
