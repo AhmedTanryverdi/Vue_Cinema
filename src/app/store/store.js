@@ -4,6 +4,7 @@ const store = createStore({
 	state() {
 		return {
 			isLoading: false,
+			error: false,
 			sortField: "",
 			products: [],
 			activeMovie: {},
@@ -14,6 +15,7 @@ const store = createStore({
 		products: (state) => state.products,
 		activeMovie: (state) => state.activeMovie,
 		getLoading: (state) => state.isLoading,
+		error: (state)=>state.error,
 		sortField: (state) => state.sortField,
 		sortMovies: (state) => {
 			if (state.sortField === "name") {
@@ -50,6 +52,10 @@ const store = createStore({
 		CLEAR_PRODUCT(state) {
 			state.products = [];
 		},
+
+		SET_ERROR(state, payload) {
+			state.error = payload;
+		},
 	},
 
 	actions: {
@@ -75,8 +81,12 @@ const store = createStore({
 			fetch(url)
 				.then((res) => res.json())
 				.then(({ data }) => {
+					if (!data) {
+						throw true;
+					}
 					context.commit("SET_ACTIVE_MOVIE", data);
 				})
+				.catch((err) => context.commit("SET_ERROR", err))
 				.finally(() => {
 					context.commit("SET_LOADING", false);
 				});
@@ -88,6 +98,10 @@ const store = createStore({
 
 		syncClearProducts(context) {
 			context.commit("CLEAR_PRODUCT");
+		},
+
+		syncSetError(context, payload) {
+			context.commit("SET_ERROR", payload);
 		},
 	},
 });

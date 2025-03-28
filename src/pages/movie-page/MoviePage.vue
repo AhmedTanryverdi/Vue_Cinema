@@ -2,6 +2,7 @@
 	<my-loading v-if="$store.getters.getLoading" />
 	<div class="movie" v-else>
 		<one-movie
+			v-if="!$store.getters.error"
 			:poster="movie?.poster"
 			:title="movie?.title"
 			:year="movie?.year"
@@ -10,6 +11,9 @@
 			:actors="movie?.actors"
 			:description="movie?.description"
 		/>
+		<p class="notFound" v-else>
+			К сожалению по вашему запросу ничего не найдено...
+		</p>
 		<button @click="goBack()">Назад</button>
 	</div>
 </template>
@@ -39,7 +43,17 @@ export default {
 	methods: {
 		goBack() {
 			this.$store.dispatch("syncClearProducts");
+			this.$store.dispatch("syncSetError", false);
 			this.$router.go(-1);
+		},
+
+		isNotFoundId() {
+			this.$store.getters.products.forEach((product) => {
+				if (product.id === this.$route?.params?.id) {
+					return false;
+				}
+				return true;
+			});
 		},
 	},
 
@@ -61,8 +75,16 @@ export default {
 	display: flex;
 	flex-direction: column;
 
+	.notFound {
+		color: #fff;
+		font-size: 28px;
+		margin-top: 30px;
+		text-align: center;
+	}
+
 	button {
 		padding: 8px 16px;
+		margin-top: 20px;
 		width: 150px;
 		font-size: 18px;
 		border: 1px solid #ff5252fa;
