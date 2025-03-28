@@ -46,6 +46,10 @@ const store = createStore({
 		SORT_MODE(state, payload) {
 			state.sortField = payload;
 		},
+
+		CLEAR_PRODUCT(state) {
+			state.products = [];
+		},
 	},
 
 	actions: {
@@ -80,6 +84,10 @@ const store = createStore({
 
 		syncSortMode(context, mode) {
 			context.commit("SORT_MODE", mode);
+		},
+
+		syncClearProducts(context) {
+			context.commit("CLEAR_PRODUCT");
 		},
 	},
 });
